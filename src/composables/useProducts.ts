@@ -1,13 +1,11 @@
-import {useProductsStore} from "@/stores/useProductsStore.ts";
 import {onUnmounted, ref} from "vue";
-
-const {products, saveProduct} = useProductsStore()
 
 export function useProducts() {
     const loading = ref<boolean>(false);
     const message = ref<string>('');
     let isActive = <boolean>true;
     const baseUrl = <string>'https://fakestoreapi.com/products';
+    const products = ref<Array<any>>([]);
     const getProducts = async (): Promise<void> => {
         try {
             loading.value = true;
@@ -30,5 +28,5 @@ export function useProducts() {
     onUnmounted(() => {
         isActive = false;
     });
-    return {getProducts, loading, message};
+    return {getProducts, loading, message, products};
 }

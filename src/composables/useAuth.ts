@@ -22,7 +22,7 @@ export function useAuth() {
                 message.value = 'Credenciais Inválidas ou Incorretas';
                 return
             }
-            if (res.status === 200) {
+            if (res.status === 201) {
                 const data = await res.json();
                 saveToken(data.token);
                 message.value = 'Login Realizado com Sucesso!';

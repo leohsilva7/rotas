@@ -12,13 +12,22 @@ const router = createRouter({
                 title: 'Login',
                 requiresAuth: false
             }
+        },
+        {
+            path: '/produtos',
+            name: 'products',
+            component: () => import('../views/ProductsView.vue'),
+            meta: {
+                title: 'Listagem de Produtos',
+                requiresAuth: true,
+            }
         }
     ],
 });
-router.beforeEach((from, to) => {
+router.beforeEach((to, from) => {
     const {token} = useToken();
-    if (token.value === '' && to.meta.requiresAuth) {
-        return {name: 'root'};
+    if (!token.value && to.meta.requiresAuth) {
+        return {name: 'login'};
     }
 });
 router.afterEach((to) => {

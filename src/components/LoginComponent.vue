@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import {useAuth} from "@/composables/useAuth.ts";
 import {reactive} from "vue";
+import router from "@/router";
 
 const {login, loading, message} = useAuth();
 const formData = reactive({
@@ -23,6 +24,7 @@ const formData = reactive({
 });
 const loginAction = async (): Promise<void> => {
   await login(formData);
+  await router.push({name: 'products'});
 }
 </script>
 
