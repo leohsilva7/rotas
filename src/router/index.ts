@@ -21,6 +21,15 @@ const router = createRouter({
                 title: 'Listagem de Produtos',
                 requiresAuth: true,
             }
+        },
+        {
+            path: '/products/new',
+            name: 'newProduct',
+            component: () => import('../views/NewProductView.vue'),
+            meta: {
+                title: 'Cadastro de Produto',
+                requiresAuth: true,
+            }
         }
     ],
 });
